@@ -1,5 +1,6 @@
 package com.example.students
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -37,6 +38,12 @@ class StudentAdapter() :
                 if (position != RecyclerView.NO_POSITION) {
                     studentList[position] = updatedStudent
                 }
+            }
+
+            itemView.setOnClickListener {
+                val intent = Intent(itemView.context, StudentDetails::class.java)
+                intent.putExtra("POSITION", adapterPosition)
+                (itemView.context as MainActivity).launchEditActivity(intent)
             }
         }
     }
